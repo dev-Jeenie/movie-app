@@ -14,7 +14,7 @@ function App() {
     <Food fav="samgyepsal" />
     <Food fav="jjucumi" />
     </div>
-    );
+    ); 
 
 }
 
