@@ -9,7 +9,7 @@ function Food({ name, picture }){
     </div>
   );
 }
-
+ 
 const foodILike = [
   {
   name: "Kimchi",
