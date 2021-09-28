@@ -1,71 +1,68 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const foodILike = [
-  {
-    id: 1,
-    name: "Kimchi",
-    image:
-      "https://kstory365.files.wordpress.com/2015/01/kimchi-01-cabbage.jpg",
-    // rating: 5,
-  },
-  {
-    id: 2,
-    name: "bulgogi",
-    image:
-      "https://www.google.com/search?q=%EB%B6%88%EA%B3%A0%EA%B8%B0&rlz=1C5CHFA_enKR902KR902&sxsrf=ALeKk02ziUIXmsNvR7TuYKh1cpJGpdpH8g:1593509047151&source=lnms&tbm=isch&sa=X&ved=2ahUKEwi-p87lm6nqAhVbUd4KHVSWBBUQ_AUoAXoECBgQAw&biw=1440&bih=701&dpr=2#imgrc=kjZoAmvHGo-KfM",
-    rating: 3,
-  },
-  {
-    id: 3,
-    name: "kimbap",
-    image:
-      "https://www.google.com/search?q=%EA%B9%80%EB%B0%A5&rlz=1C5CHFA_enKR902KR902&sxsrf=ALeKk03dn_nrK6M5JlKKfD5krm8w3qTmGQ:1593509069629&source=lnms&tbm=isch&sa=X&ved=2ahUKEwjqn6rwm6nqAhXDQN4KHYLUA4EQ_AUoAXoECBgQAw&biw=1440&bih=701#imgrc=Xz3xQoYZw3bqEM",
-    rating: 4.9,
-  },
-  {
-    id: 4,
-    name: "samgyetang",
-    image:
-      "https://img.seoul.co.kr//img/upload/2019/07/25/SSI_20190725184016.jpg",
-    rating: 3,
-  },
-];
+class App extends React.Component {
+  // reactcomponent에서 확장된 App
+  /** camera,screen,charger를 cell phone class에 넣은 다음
+   * 그 cell phone class에서 확장된 samsung class와 apple class
+   * 그럼 samsung class는 cell phone class에서 모든 것을 가져올 수 있다
+   * 통틀어서 추상화한 거라고 생각(밀가루 붓는 틀 -> 빵틀 -> 붕어빵틀, 와플틀, 계란빵틀...) */
+  constructor(props) {
+    /** constructor는 render의 전에 호출된다.
+     *    컴포넌트가 mount될 때, 컴포넌트가 screen에 표시될 때, 컴포넌트가 웹사이트에 갈 때 constructor를 호출한다
+     */
+    super(props);
+    console.log("hello");
+  }
+  state = {
+    count: 0,
+  };
+  add = () => {
+    /*
+    this.state.count = 1; (X)
+    //Do not mutate state directly. Use setState().
+    그리고 이렇게 하면 react가 render function을 refresh하지 않는다
+    매번 state의 상태를 변경할 때마다, react가 render function을 호출해서 바꾸게 해야한다
+    => state를 변경하고, 바뀔 때마다 react가 refresh 해줘야하니까 setState를 쓴다!
+    setState를 할 때마다, react는 새로운 state와 함께 render function을 호출한다!!!!!!!!
+    */
+    this.setState((current) => ({ count: current.count + 1 }));
+    // this.setState(() => ({ count: this.state.count + 1 })); state(외부)에 너무 의존하기때문에 좋지않음
+    // 그래서 function 방식으로 현재의 state를 가져올 수 있음
+  };
+  minus = () => {
+    this.setState((current) => ({ count: current.count - 1 }));
+  };
+  /** Component의 Life cycle */
+  componentDidMount() {
+    // 컴포넌트가 처음 render된건지 알려줌
+    console.log("component rendered ");
+  }
+  componentDidUpdate() {
+    console.log("I just updated ");
+  }
+  componentWillUnmount() {
+    console.log("Goodbye, cruel world");
+  }
 
-function Food({ name, picture, rating }) {
-  // props.name이나 {name}이나 같은거다
-  return (
-    <div>
-      <h1>I like {name}</h1>
-      <h4>{rating}/5.0</h4>
-      <img src={picture} alt={name} />
-    </div>
-  );
-}
-Food.propTypes = {
-  // propTypes의 이름은 반드시 propTypes 여야함
-  // https://ko.reactjs.org/docs/typechecking-with-proptypes.html 문서 참조.
-  name: PropTypes.string.isRequired,
-  picture: PropTypes.string.isRequired,
-  rating: PropTypes.number,
-};
-
-function App() {
-  return (
-    <div>
-      <h1>Hello</h1>
-      {foodILike.map((dish) => (
-        <Food
-          key={dish.id}
-          name={dish.name}
-          picture={dish.image}
-          rating={dish.rating}
-        />
-      ))}
-      {/* 여기서 dish는 객체다. 마우스 올려보면 name이랑 image가 나타난다 */}
-      {/* Food 컴포넌트에 fav라는 이름의 property를 kimchi라는 value로 준것이다 */}
-    </div>
-  );
+  render() {
+    console.log("I am rendering");
+    // react는 자동적으로 class component의 render method를 실행한다!
+    return (
+      <div>
+        <h1> The number is : {this.state.count}</h1>
+        <button onClick={this.add}>Add</button>
+        <button onClick={this.minus}>minus</button>
+      </div>
+    );
+    /** 이 render method는 react.component가 가지고 있었지만, 확장했기 때문에 App component도 가지게 되었다 */
+  }
 }
 
 export default App;
+
+/**Function Component와 Class Component의 차이점
+ *  Function Component는 function이고, 뭔가를 return한 뒤 screen에 표시됨
+ *  Class Component는 class이고, react component로부터 확장되어서 screen에 표시됨 -> 이걸 render method에 넣어야함
+ *
+ */
