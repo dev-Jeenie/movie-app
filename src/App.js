@@ -15,15 +15,23 @@ class App extends React.Component {
     // 이곳에 쓰는 future state는 필수가 아님
   };
   getMovies = async () => {
-    const movies = await axios.get("https://yts.mx/api/v2/list_movies.json");
-    console.log(movies.data.data.movies);
+    const {
+      data: {
+        data: { movies },
+      },
+    } = await axios.get("https://yts.mx/api/v2/list_movies.json");
+    // console.log(movies.data.data.movies); 이건 너무 기니까 es6의 문법으로 축약
+    console.log(movies);
+    this.setState({ movies: movies, isLoading: false }); //state의 movie: axios의 movie
+    // axios가 데이터를 가져오면 isLoading에 false를 전달
+
     /** axios.get는 시간이 걸린다. 기다리라고 전해줘야함.
      * async = "너는 비동기야 = 넌 기다려야해"
      * 뭐를 기다려?
      * await axios.get = axios를 기다려
      * => await 끝날때까지 기다렸다가 계속해라!
      */
-  };
+  };;
   componentDidMount() {
     this.getMovies();
     // setTimeout(() => {
