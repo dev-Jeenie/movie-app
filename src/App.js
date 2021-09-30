@@ -30,20 +30,24 @@ class App extends React.Component {
      * 뭐를 기다려?
      * await axios.get = axios를 기다려
      * => await 끝날때까지 기다렸다가 계속해라!
+     * 의존성이 있을때 어싱크를 쓴다. 데이터를 받아오고 보여주는 올 때까지 안보여주다가 나오면 딱 보이게
+     * 신청하기같은걸 눌렀어 그럼 완료알림이 뜨는데 비동기처리가 안되어있으면 그냥 바로 신청완료알림이 뜨는것
+     * 그래서 기다리라고 하는거다
      */
-  };;
+  };
+
+  render() {
+    const { isLoading } = this.state;
+    // return <div>{this.state.isLoading ? "Loading" : "We are ready"}</div>;
+    // this.state.isLoading을 다 쓰지 않고
+    return <div>{isLoading ? "Loading......" : "We are ready"}</div>;
+  }
   componentDidMount() {
     this.getMovies();
     // setTimeout(() => {
     //   this.setState({ isLoading: false, book: true });
     //   // state에 있는 것들이 필수가 아니기때문에 book처럼 state를 추가해도 괜찮다
     // }, 2000);
-  }
-  render() {
-    const { isLoading } = this.state;
-    // return <div>{this.state.isLoading ? "Loading" : "We are ready"}</div>;
-    // this.state.isLoading을 다 쓰지 않고
-    return <div>{isLoading ? "Loading......" : "We are ready"}</div>;
   }
 }
 
