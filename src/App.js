@@ -35,19 +35,20 @@ class App extends React.Component {
      * 그래서 기다리라고 하는거다
      */
   };
-
-  render() {
-    const { isLoading } = this.state;
-    // return <div>{this.state.isLoading ? "Loading" : "We are ready"}</div>;
-    // this.state.isLoading을 다 쓰지 않고
-    return <div>{isLoading ? "Loading......" : "We are ready"}</div>;
-  }
   componentDidMount() {
+    // 컴포넌트가 업데이트 되었다면 getMovies를 실행해라
     this.getMovies();
     // setTimeout(() => {
     //   this.setState({ isLoading: false, book: true });
     //   // state에 있는 것들이 필수가 아니기때문에 book처럼 state를 추가해도 괜찮다
     // }, 2000);
+  }
+  render() {
+    const { isLoading } = this.state;
+    // this의 state에서 isLoading을 객체구조분해해서 가져온다
+    // return <div>{this.state.isLoading ? "Loading" : "We are ready"}</div>;
+    // this.state.isLoading을 다 쓰지 않고
+    return <div>{isLoading ? "Loading......" : "We are ready"}</div>;
   }
 }
 
