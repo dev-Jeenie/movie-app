@@ -3,6 +3,9 @@ import axios from "axios";
 import Movie from "./Movie";
 import "./Movie.css";
 
+
+/** react hooks가 있기 때문에 state를 위해서 class component를 가질 필요가 없다 */
+
 class App extends React.Component {
   /**
    * 순서
