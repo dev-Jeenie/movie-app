@@ -45,49 +45,7 @@ class App extends React.Component {
   }
   render() {
     const { isLoading } = this.state;
-    // this의 state에서 isLoading을 객체구조분해해서 가져온다
-    // return <div>{this.state.isLoading ? "Loading" : "We are ready"}</div>;
-    // this.state.isLoading을 다 쓰지 않고
-    return <div>{isLoading ? "Loading......" : "We are ready"}</div>;
-  }
-  render() {
-    const { isLoading } = this.state;
-    // this의 state에서 isLoading을 객체구조분해해서 가져온다
-    // return <div>{this.state.isLoading ? "Loading" : "We are ready"}</div>;
-    // this.state.isLoading을 다 쓰지 않고
-    return <div>{isLoading ? "Loading......" : "We are ready"}</div>;
-  }
-  render() {
-    const { isLoading } = this.state;
-    // this의 state에서 isLoading을 객체구조분해해서 가져온다
-    // return <div>{this.state.isLoading ? "Loading" : "We are ready"}</div>;
-    // this.state.isLoading을 다 쓰지 않고
-    return <div>{isLoading ? "Loading......" : "We are ready"}</div>;
-  }
-  render() {
-    const { isLoading } = this.state;
-    // this의 state에서 isLoading을 객체구조분해해서 가져온다
-    // return <div>{this.state.isLoading ? "Loading" : "We are ready"}</div>;
-    // this.state.isLoading을 다 쓰지 않고
-    return <div>{isLoading ? "Loading......" : "We are ready"}</div>;
-  }
-  render() {
-    const { isLoading } = this.state;
-    // this의 state에서 isLoading을 객체구조분해해서 가져온다
-    // return <div>{this.state.isLoading ? "Loading" : "We are ready"}</div>;
-    // this.state.isLoading을 다 쓰지 않고
-    return <div>{isLoading ? "Loading......" : "We are ready"}</div>;
-  }
-  render() {
-    const { isLoading } = this.state;
-    // this의 state에서 isLoading을 객체구조분해해서 가져온다
-    // return <div>{this.state.isLoading ? "Loading" : "We are ready"}</div>;
-    // this.state.isLoading을 다 쓰지 않고
-    return <div>{isLoading ? "Loading......" : "We are ready"}</div>;
-  }
-  render() {
-    const { isLoading } = this.state;
-    // this의 state에서 isLoading을 객체구조분해해서 가져온다
+    // isLoading을 this의 state에서 객체구조분해해서 가져온다
     // return <div>{this.state.isLoading ? "Loading" : "We are ready"}</div>;
     // this.state.isLoading을 다 쓰지 않고
     return <div>{isLoading ? "Loading......" : "We are ready"}</div>;
