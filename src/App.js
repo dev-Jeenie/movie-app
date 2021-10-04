@@ -1,6 +1,7 @@
 import React from "react";
-import PropTypes from "prop-types";
 import axios from "axios";
+import Movie from "./Movie";
+import "./Movie.css";
 
 class App extends React.Component {
   /**
@@ -19,7 +20,9 @@ class App extends React.Component {
       data: {
         data: { movies },
       },
-    } = await axios.get("https://yts.mx/api/v2/list_movies.json");
+    } = await axios.get(
+      "https://yts.mx/api/v2/list_movies.json?sort_by=rating"
+    );
     // console.log(movies.data.data.movies); 이건 너무 기니까 es6의 문법으로 축약
     console.log(movies);
     this.setState({ movies: movies, isLoading: false }); //state의 movie: axios의 movie
@@ -44,11 +47,33 @@ class App extends React.Component {
     // }, 2000);
   }
   render() {
-    const { isLoading } = this.state;
+    const { isLoading, movies } = this.state;
     // isLoading을 this의 state에서 객체구조분해해서 가져온다
     // return <div>{this.state.isLoading ? "Loading" : "We are ready"}</div>;
     // this.state.isLoading을 다 쓰지 않고
-    return <div>{isLoading ? "Loading......" : "We are ready"}</div>;
+    return (
+      <div>
+        {isLoading ? (
+          <div className="loader">
+            <span className="loader_text">Loading...</span>
+          </div>
+        ) : (
+          <div className="movies">
+            {movies.map((movie) => (
+              <Movie
+                key={movie.id}
+                id={movie.id}
+                year={movie.year}
+                title={movie.title}
+                summary={movie.summary}
+                poster={movie.medium_cover_image}
+                genres={movie.genres}
+              />
+            ))}
+          </div>
+        )}
+      </div>
+    );
   }
 }
 
