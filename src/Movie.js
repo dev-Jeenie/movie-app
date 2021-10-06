@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import "./Movie.css";
 
 // state가 필요없을 경우, class 컴포넌트를 쓸 필요 없다
+// git update test
 function Movie({ id, year, title, summary, poster, genres }) {
   return (
     <div className="movie">
