@@ -34,7 +34,7 @@
   color: #2c2c2c;
 }
 
-.movie .movie__genres {
+.movie ul.genres {
   list-style: none;
   padding: 0;
   margin: 0;
